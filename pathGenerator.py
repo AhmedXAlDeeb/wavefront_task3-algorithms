@@ -3,13 +3,38 @@ from random import randint
 
 class Environment:
     def __init__(self):
+        self.rows= 14
+        self.columns = 20
         self.env = None
-        self.goal_flag = False
-        self.goal_pos = None
+        self.goal_flag = True
+        self.goal_pos = (2,17)
         self.directions = [
             (-1, 0), (1, 0), (0, -1), (0, 1),  # Cardinal directions
             (-1, -1), (-1, 1), (1, -1), (1, 1)  # Diagonals
         ]
+    def create_defualt_environment(self):
+        """
+        Initialize the environment with dimensions (rows x cols) and randomly place obstacles.
+        """
+        map_matrix = [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        ]
+
+        # Initialize empty environment
+        self.env = map_matrix
 
     def create_environment(self, rows, cols, obs):
         """
@@ -115,8 +140,7 @@ class Environment:
 if __name__ == "__main__":
     # Create and test the environment
     env = Environment()
-    env.create_environment(14, 21, 30)  # 14x21 environment with 30 obstacles
-    env.place_goal((2, 18))
+    env.create_defualt_environment()  # 14x21 environment with 30 obstacles
     print("Initial Environment:")
     env.print_environment()
     env.start_wave()
